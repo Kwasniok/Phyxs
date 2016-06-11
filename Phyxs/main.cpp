@@ -19,7 +19,6 @@ void test_seed(ofstream& of_p, unsigned long seed, int size_x, int size_y, int t
 void random_init(Grid& grid);
 void seeded_init(Grid& grid, unsigned long seed);
 char repr(const Cell& c);
-void grid_to_bmp(Grid& g, const char* path, unsigned long t);
 
 
 int main(int argc, const char * argv[]) {
@@ -195,70 +194,4 @@ char repr(const Cell& c) {
 		default:
 			return 'X';
 	}
-}
-
-void grid_to_bmp(Grid& grid, const char* p, unsigned long t)  {
-	
-	int w = grid.get_size_x();
-	int h = grid.get_size_y();
-	int filesize = 54 + 3*w*h;
-
-	unsigned char *img = new unsigned char[filesize];
-	memset(img,0,filesize);
-	
-	unsigned char r,g,b;
-	for(int x=0; x<w; ++x)
-	{
-		for(int y=0; y<h; ++y)
-		{
-			Cell& c = grid.get_cell(x, y);
-			
-			if (c.is_obstacle()) {r=128; b=128; g=128;}
-			else if (c.is_alive()) {r=255; b=255; g=255;}
-			else {r=0; b=0; g=0;}
-			
-			img[(x+y*w)*3+2] = r;
-			img[(x+y*w)*3+1] = g;
-			img[(x+y*w)*3+0] = b;
-		}
-	}
-	
-	unsigned char bmpfileheader[14] = {'B','M', 0,0,0,0, 0,0, 0,0, 54,0,0,0};
-	unsigned char bmpinfoheader[40] = {40,0,0,0, 0,0,0,0, 0,0,0,0, 1,0, 24,0};
-	unsigned char bmppad[3] = {0,0,0};
-	
-	bmpfileheader[ 2] = (unsigned char)(filesize    );
-	bmpfileheader[ 3] = (unsigned char)(filesize>> 8);
-	bmpfileheader[ 4] = (unsigned char)(filesize>>16);
-	bmpfileheader[ 5] = (unsigned char)(filesize>>24);
-	
-	bmpinfoheader[ 4] = (unsigned char)(       w    );
-	bmpinfoheader[ 5] = (unsigned char)(       w>> 8);
-	bmpinfoheader[ 6] = (unsigned char)(       w>>16);
-	bmpinfoheader[ 7] = (unsigned char)(       w>>24);
-	bmpinfoheader[ 8] = (unsigned char)(       h    );
-	bmpinfoheader[ 9] = (unsigned char)(       h>> 8);
-	bmpinfoheader[10] = (unsigned char)(       h>>16);
-	bmpinfoheader[11] = (unsigned char)(       h>>24);
-	
-	std::string path = p;
-	path += to_string(t);
-	path += ".bmp";
-	ofstream ofs (path);
-	
-	ofs.write(reinterpret_cast<const char*>(bmpfileheader), 14);
-	ofs.write(reinterpret_cast<const char*>(bmpinfoheader), 40);
-	
-	int pad_len = (4-(w*3)%4)%4;
-	unsigned char* row;
-	for(int y=0; y<h; ++y)
-	{
-		row = img+(w*(h-y-1)*3);
-		ofs.write(reinterpret_cast<const char*>(row), 3*w);
-		ofs.write(reinterpret_cast<const char*>(bmppad), pad_len);
-	}
-	ofs.close();
-	
-	delete[] img;
-
 }
