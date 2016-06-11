@@ -201,12 +201,9 @@ void grid_to_bmp(Grid& grid, const char* p, unsigned long t)  {
 	
 	int w = grid.get_size_x();
 	int h = grid.get_size_y();
+	int filesize = 54 + 3*w*h;
 
-	FILE *f;
-	unsigned char *img = NULL;
-	int filesize = 54 + 3*w*h;  //w is your image width, h is image height, both int
-	
-	img = (unsigned char *)malloc(filesize);
+	unsigned char *img = new unsigned char[filesize];
 	memset(img,0,filesize);
 	
 	unsigned char r,g,b;
@@ -247,14 +244,21 @@ void grid_to_bmp(Grid& grid, const char* p, unsigned long t)  {
 	std::string path = p;
 	path += to_string(t);
 	path += ".bmp";
-	f = fopen(path.c_str(),"wb");
-	fwrite(bmpfileheader,1,14,f);
-	fwrite(bmpinfoheader,1,40,f);
-	for(int i=0; i<h; i++)
+	ofstream ofs (path);
+	
+	ofs.write(reinterpret_cast<const char*>(bmpfileheader), 14);
+	ofs.write(reinterpret_cast<const char*>(bmpinfoheader), 40);
+	
+	int pad_len = (4-(w*3)%4)%4;
+	unsigned char* row;
+	for(int y=0; y<h; ++y)
 	{
-		fwrite(img+(w*(h-i-1)*3),3,w,f);
-		fwrite(bmppad,1,(4-(w*3)%4)%4,f);
+		row = img+(w*(h-y-1)*3);
+		ofs.write(reinterpret_cast<const char*>(row), 3*w);
+		ofs.write(reinterpret_cast<const char*>(bmppad), pad_len);
 	}
-	fclose(f);
+	ofs.close();
+	
+	delete[] img;
 
 }
