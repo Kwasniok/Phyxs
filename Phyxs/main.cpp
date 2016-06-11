@@ -12,6 +12,7 @@
 #include <thread>
 #include <limits>
 #include "Grid.hpp"
+#include "grid_to_bmp.hpp"
 
 using namespace std;
 

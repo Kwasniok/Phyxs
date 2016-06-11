@@ -67,12 +67,12 @@
 			isa = PBXGroup;
 			children = (
 				B4F8988E1D072A69003A4B03 /* main.cpp */,
-				B4AEEBBB1D0C9FD40001FE30 /* grid_to_bmp.hpp */,
-				B4AEEBBA1D0C9FD40001FE30 /* grid_to_bmp.cpp */,
 				B4E600651D07697E00905151 /* Grid.hpp */,
 				B4E600641D07697E00905151 /* Grid.cpp */,
 				B4AED9251D0C6EC4000FCCD3 /* Cell.hpp */,
 				B4AED9241D0C6EC4000FCCD3 /* Cell.cpp */,
+				B4AEEBBB1D0C9FD40001FE30 /* grid_to_bmp.hpp */,
+				B4AEEBBA1D0C9FD40001FE30 /* grid_to_bmp.cpp */,
 			);
 			path = Phyxs;
 			sourceTree = "<group>";
