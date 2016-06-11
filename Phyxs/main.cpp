@@ -158,7 +158,7 @@ void seeded_init(Grid& grid, unsigned long seed) {
 	int pos_y = grid.get_size_y() / 2 - 4;
 	
 	for (int i=0; i < 64; ++i) {
-		if ((seed >> i) & 0x1) grid.get_cell(pos_x + i / 8, pos_y + i % 8).set_alive();
+		if ((seed >> i) & 0x1) grid.get_cell(pos_x + i % 8, pos_y + i / 8).set_alive();
 		//else grid.get_cell(pos_x + i / 8, pos_y + i % 8).set_dead();
 	}
 }
@@ -199,8 +199,8 @@ char repr(const Cell& c) {
 
 void grid_to_bmp(Grid& grid, const char* p, unsigned long t)  {
 	
-	int w = grid.get_size_y();
-	int h = grid.get_size_x();
+	int w = grid.get_size_x();
+	int h = grid.get_size_y();
 
 	FILE *f;
 	unsigned char *img = NULL;
@@ -210,14 +210,11 @@ void grid_to_bmp(Grid& grid, const char* p, unsigned long t)  {
 	memset(img,0,filesize);
 	
 	unsigned char r,g,b;
-	int x,y;
-	for(int i=0; i<w; i++)
+	for(int x=0; x<w; ++x)
 	{
-		for(int j=0; j<h; j++)
+		for(int y=0; y<h; ++y)
 		{
-			x=i; y=j;
-			
-			Cell& c = grid.get_cell(j, i);
+			Cell& c = grid.get_cell(x, y);
 			
 			if (c.is_obstacle()) {r=128; b=128; g=128;}
 			else if (c.is_alive()) {r=255; b=255; g=255;}
