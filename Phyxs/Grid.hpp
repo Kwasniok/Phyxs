@@ -27,7 +27,7 @@ private:
 		if (y < 0) return pos(x, y + _size_y);
 		if (y >= _size_y) y = y % _size_y;
 		
-		return x * _size_y + y;
+		return y * _size_x + x;
 	}
 	
 public:
