@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B4AED9261D0C6EC4000FCCD3 /* Cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AED9241D0C6EC4000FCCD3 /* Cell.cpp */; };
 		B4AEEBBC1D0C9FD40001FE30 /* grid_to_bmp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AEEBBA1D0C9FD40001FE30 /* grid_to_bmp.cpp */; };
+		B4AEEBBF1D0CA2460001FE30 /* grid_to_console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4AEEBBD1D0CA2460001FE30 /* grid_to_console.cpp */; };
 		B4E600661D07697E00905151 /* Grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4E600641D07697E00905151 /* Grid.cpp */; };
 		B4F8988F1D072A69003A4B03 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4F8988E1D072A69003A4B03 /* main.cpp */; };
 /* End PBXBuildFile section */
@@ -30,6 +31,8 @@
 		B4AED9251D0C6EC4000FCCD3 /* Cell.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Cell.hpp; sourceTree = "<group>"; };
 		B4AEEBBA1D0C9FD40001FE30 /* grid_to_bmp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = grid_to_bmp.cpp; sourceTree = "<group>"; };
 		B4AEEBBB1D0C9FD40001FE30 /* grid_to_bmp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = grid_to_bmp.hpp; sourceTree = "<group>"; };
+		B4AEEBBD1D0CA2460001FE30 /* grid_to_console.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = grid_to_console.cpp; sourceTree = "<group>"; };
+		B4AEEBBE1D0CA2460001FE30 /* grid_to_console.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = grid_to_console.hpp; sourceTree = "<group>"; };
 		B4E600641D07697E00905151 /* Grid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Grid.cpp; sourceTree = "<group>"; };
 		B4E600651D07697E00905151 /* Grid.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Grid.hpp; sourceTree = "<group>"; };
 		B4F8988B1D072A69003A4B03 /* Phyxs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Phyxs; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +76,8 @@
 				B4AED9241D0C6EC4000FCCD3 /* Cell.cpp */,
 				B4AEEBBB1D0C9FD40001FE30 /* grid_to_bmp.hpp */,
 				B4AEEBBA1D0C9FD40001FE30 /* grid_to_bmp.cpp */,
+				B4AEEBBE1D0CA2460001FE30 /* grid_to_console.hpp */,
+				B4AEEBBD1D0CA2460001FE30 /* grid_to_console.cpp */,
 			);
 			path = Phyxs;
 			sourceTree = "<group>";
@@ -134,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4AED9261D0C6EC4000FCCD3 /* Cell.cpp in Sources */,
+				B4AEEBBF1D0CA2460001FE30 /* grid_to_console.cpp in Sources */,
 				B4F8988F1D072A69003A4B03 /* main.cpp in Sources */,
 				B4AEEBBC1D0C9FD40001FE30 /* grid_to_bmp.cpp in Sources */,
 				B4E600661D07697E00905151 /* Grid.cpp in Sources */,

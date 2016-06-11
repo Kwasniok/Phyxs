@@ -13,6 +13,7 @@
 #include <limits>
 #include "Grid.hpp"
 #include "grid_to_bmp.hpp"
+#include "grid_to_console.hpp"
 
 using namespace std;
 
@@ -65,24 +66,6 @@ void test_seed(ofstream& of_p, unsigned long seed, int size_x, int size_y, int t
 	//grid_to_bmp(grid, 0);
 	bool cont = true;
 	for (int t=0; cont && t <= t_max; ++t) {
-		//cout << "t = " << t << endl;
-		
-		/*
-		 for (int i=0; i < size_x; ++i) {
-			for (int j=0; j < size_y; ++j) {
-		 Cell& c = grid.get_cell(i, j);
-		 if (c.get_colony() != 0)
-		 cout << "\33[" << 30 + c.get_colony() << 'm';
-		 cout << repr(c) << ' ';
-		 if (c.get_colony() != 0)
-		 cout << "\33[0m";
-			}
-			cout << endl;
-		 }
-		 cout << endl;
-		 cout.flush();
-		 this_thread::sleep_for(chrono::milliseconds(long(1000.0/10.0)));
-		 */
 	 
 		up_count = grid.update();
 		//cout << up_count << endl;
@@ -163,36 +146,3 @@ void seeded_init(Grid& grid, unsigned long seed) {
 	}
 }
 
-
-char repr(const Cell& c) {
-	
-	if (c.is_obstacle()){
-		if(c.is_alive()) return 'O';
-		else return 'o';
-	}
-	
-	switch (c.get_livetime()) {
-		case 0:
-			return ' ';
-		case 1:
-			return '1';
-		case 2:
-			return '2';
-		case 3:
-			return '3';
-		case 4:
-			return '4';
-		case 5:
-			return '5';
-		case 6:
-			return '6';
-		case 7:
-			return '7';
-		case 8:
-			return '8';
-		case 9:
-			return '9';
-		default:
-			return 'X';
-	}
-}
